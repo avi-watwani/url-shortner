@@ -23,6 +23,27 @@ const UrlHash = () => {
     return String(str).replace(/&lt;/g, "<").replace(/&gt;/g, ">");
   };
 
+  const deleteUrlHash = () => {
+    const url = `/api/v1/destroy/${params.id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(() => navigate("/url_hashes"))
+      .catch((error) => console.log(error.message));
+  };
+
   return (
     <div className="">
       <div className="hero position-relative d-flex align-items-center justify-content-center">
@@ -45,6 +66,7 @@ const UrlHash = () => {
             <button
               type="button"
               className="btn btn-danger"
+              onClick={deleteUrlHash}
             >
               Delete URL
             </button>
