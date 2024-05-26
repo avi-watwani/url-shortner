@@ -7,7 +7,7 @@ class Api::V1::UrlHashesController < ApplicationController
   end
 
   def create
-    url_hash = UrlHash.create!(url_params)
+    url_hash = UrlHash.create!(short: "#{SecureRandom.hex[0, 6]}-#{Time.current.to_i}", long: url_params[:long].to_s)
     if url_hash
       render json: url_hash
     else
@@ -27,7 +27,7 @@ class Api::V1::UrlHashesController < ApplicationController
   private
 
   def url_params
-    params.permit(:short, :long)
+    params.permit(:long)
   end
 
   def set_url

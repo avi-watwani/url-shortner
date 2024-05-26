@@ -23,7 +23,7 @@ const UrlHashes = () => {
       <div className="card mb-4">
         <div className="card-body">
           <h5 className="card-title">{urlHash.short}</h5>
-          <Link to={`/${urlHash.long}`} className="btn custom-button">
+          <Link to={`/url_hash/${urlHash.id}`} className="btn custom-button">
             Open URL
           </Link>
         </div>
@@ -51,7 +51,7 @@ const UrlHashes = () => {
       <div className="py-5">
         <main className="container">
           <div className="text-end mb-3">
-            <Link to="/urlhash" className="btn custom-button">
+            <Link to="/url_hash" className="btn custom-button">
               Create New Short URL
             </Link>
           </div>
