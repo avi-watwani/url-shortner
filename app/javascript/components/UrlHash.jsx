@@ -19,8 +19,8 @@ const UrlHash = () => {
       .catch(() => navigate("/url_hashes"));
   }, [params.id]);
 
-  const addHtmlEntities = (str) => {
-    return String(str).replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  const navigateToLongUrl = () => {
+    navigate(`/${urlHash.short}`);
   };
 
   const deleteUrlHash = () => {
@@ -49,18 +49,19 @@ const UrlHash = () => {
       <div className="hero position-relative d-flex align-items-center justify-content-center">
         <div className="overlay bg-dark position-absolute" />
         <h1 className="display-4 position-relative text-white">
-          {urlHash.short}
+          Short URL Generated!
         </h1>
       </div>
       <div className="container py-5">
         <div className="row">
-        <div className="col-sm-12 col-lg-7">
-            <h5 className="mb-2">Long URL</h5>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: `${urlHash.long}`,
-              }}
-            />
+          <div className="col-sm-12 col-lg-7">
+          <button
+              type="button"
+              className="btn btn-link"
+              onClick={navigateToLongUrl}
+            >
+              http://localhost:3000/{urlHash.short}
+            </button>
           </div>
           <div className="col-sm-12 col-lg-2">
             <button
@@ -72,9 +73,6 @@ const UrlHash = () => {
             </button>
           </div>
         </div>
-        <Link to="/url_hashes" className="btn btn-link">
-          Back to URLs
-        </Link>
       </div>
     </div>
   );

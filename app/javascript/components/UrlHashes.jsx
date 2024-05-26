@@ -33,7 +33,7 @@ const UrlHashes = () => {
   const noUrlHash = (
     <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
       <h4>
-        No urls yet. Why not <Link to="/new_url">create one</Link>
+        No urls yet. Why not <Link to="/url_hash">create one</Link>
       </h4>
     </div>
   );
